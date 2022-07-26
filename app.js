@@ -6,17 +6,20 @@ test_require();
 // 2) It executes the file
 // 3) And proceedm then return (?) the exports objects
 */
+//test
+//const findOne = require("./2_controllers/userControllers");
+
 
 //Importation des modules généraux
 const express = require("express");
 const mongoose = require("mongoose");
 
-//Importation des variables d'environnement
+//Importation des variables d"environnement
 const mongoDbUsername = process.env.MONGODB_USERNAME;
 const mongoDdPassword = process.env.MONGODB_PASSWORD;
 
 //Importation des modules "routes"
-const userRoutes = require("./1_routes/userRoute");
+const userRoutes = require("./1_routes/userRoutes");
 
 //Importation du module express
 const app = express();
@@ -37,11 +40,11 @@ mongoose.connect(`mongodb+srv://${mongoDbUsername}:${mongoDdPassword}@ocrproject
 
 app.use(express.json());
 
-app.use((req, res, next) =>
+app.use((req, res, next) => //Nom des parametres non pertinent, Ordre important
 {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
     next();
 });
 
@@ -49,3 +52,7 @@ app.use("/api/auth", userRoutes);
 
 //Exportation de la fonction app
 module.exports = app;
+
+//temp
+
+//findOne.login();
