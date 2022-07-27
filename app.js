@@ -13,13 +13,16 @@ test_require();
 //Importation des modules généraux
 const express = require("express");
 const mongoose = require("mongoose");
+const path = require("path");
 
 //Importation des variables d"environnement
 const mongoDbUsername = process.env.MONGODB_USERNAME;
 const mongoDdPassword = process.env.MONGODB_PASSWORD;
+const imageDirectory = process.env.IMAGE_DIRECTORY;
 
 //Importation des modules "routes"
 const userRoutes = require("./1_routes/userRoutes");
+const sauceRoutes = require("./1_routes/sauceRoutes");
 
 //Importation du module express
 const app = express();
@@ -49,10 +52,11 @@ app.use((req, res, next) => //Nom des parametres non pertinent, Ordre important
 });
 
 app.use("/api/auth", userRoutes);
+app.use("/api/sauces", sauceRoutes);
 
+console.log("***APP.JS***");
+console.log(__dirname);
+console.log(path.join(__dirname, imageDirectory));
+app.use("/" + imageDirectory, express.static(path.join(__dirname, imageDirectory)));
 //Exportation de la fonction app
 module.exports = app;
-
-//temp
-
-//findOne.login();
