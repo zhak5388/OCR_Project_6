@@ -54,9 +54,9 @@ app.use((req, res, next) => //Nom des parametres non pertinent, Ordre important
 app.use("/api/auth", userRoutes);
 app.use("/api/sauces", sauceRoutes);
 
-console.log("***APP.JS***");
-console.log(__dirname);
-console.log(path.join(__dirname, imageDirectory));
+//console.log("***APP.JS***");
+//console.log(__dirname);
+//console.log(path.join(__dirname, imageDirectory));
 app.use("/" + imageDirectory, express.static(path.join(__dirname, imageDirectory)));
 //Exportation de la fonction app
 module.exports = app;
