@@ -1,7 +1,6 @@
 const bcrypt = require("bcrypt");
 const jsonWebToken = require("jsonwebtoken");
 const userModel = require("../models/userModel");
-//|| const userModelPlain = require("../models/userModelPlainPassword");
 
 //Contrôleur permettant d'ajouter un utilisateur
 const signUp = (req, res, next) =>
@@ -13,17 +12,8 @@ const signUp = (req, res, next) =>
                 email: req.body.email,
                 password: hash
         });
-        
-        /* ||
-        const userPlain = new userModelPlain(
-            {
-                email: req.body.email,
-                password: req.body.password
-            });
-        */
         user.save().then(() =>
         {
-            //|| userPlain.save(); //Sauvegarder les mots de passes non hashé
             res.status(201).json({ message: "Utilisateur créé !" });
         })
         .catch(error => 

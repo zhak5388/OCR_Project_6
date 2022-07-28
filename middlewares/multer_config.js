@@ -13,7 +13,6 @@ const MIME_TYPES =
 const storage = multer.diskStorage
 (
     {
-        //|| Dans le cas de diskStorage, le dossier doit être préalablement crée, sinon erreur
         destination: (req, file, callback) => 
         {
             callback(null, uploadingDirectory);
@@ -27,8 +26,6 @@ const storage = multer.diskStorage
     }
 );
 
-//|| Le parametre à entrer dans single() est le nom de la clé telle qu'elle est définie au frontend de formData
-//|| Il est à noter que formData n'est pas consolelogable.
 const uploadImage = multer({storage: storage}).single(formDataKeyValue);
 
 module.exports = {uploadImage}

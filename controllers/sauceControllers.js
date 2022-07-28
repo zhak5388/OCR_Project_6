@@ -27,7 +27,7 @@ const addSauce = (req, res, next) =>
     const sauceObject = JSON.parse(req.body.sauce);
     const sauce = new sauceModel(
     {
-        ...sauceObject,//|| Opérateur (...) : Permet de copier un objet
+        ...sauceObject,
         imageUrl: `${req.protocol}://${req.get("host")}/${process.env.IMAGE_DIRECTORY}/${req.file.filename}`
     });
     sauce.save().then(() => 
@@ -43,9 +43,6 @@ const addSauce = (req, res, next) =>
 //Contrôleur permettant de modifier une sauce
 const modifySauce = (req, res, next) =>
 {
-    //|| Opérateur conditionnel terciaire
-    //|| var variable = (condition) ? valeur_à_assigner_à_variable_si_vraie : valeur_à_assigner_à_variable_si_faux
-    //|| https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_Operators
     const sauceObject = req.file ? 
     {
         ...JSON.parse(req.body.sauce),
@@ -171,8 +168,7 @@ const evaluateSauce = (req, res, next) =>
         sauceModel.findOne({_id: req.params.id, usersDisliked:{ $in : [req.body.userId]}}).then( data =>
         {   
             //Si le dislike est présent dans la base de données
-            if(data?.usersDisliked) //|| Chaînage optionnel | https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/Optional_chaining
-            //|| Permet de lire une donnée même si elle n'est pas completement valide
+            if(data?.usersDisliked)
             {
                 //Alors suppression du dit dislike
                 sauceModel.updateOne({_id: req.params.id}, {$inc : {dislikes: -1}, $pull: {usersDisliked: req.body.userId}})
