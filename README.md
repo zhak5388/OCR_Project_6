@@ -13,8 +13,8 @@ Node.js doit être préalablement installé
 
 Ouvrez le fichier .env insérez-y les identifiants MongoDB ainsi que la clé secrete pour les token JSON (Vous pouvez choisir une clé à d'un générateur de mot de passe comme [ici](https://www.lastpass.com/fr/features/password-generator))
 <blockquote>
-MONGODB_USERNAME=`Identifiant à insérer`
-MONGODB_PASSWORD=`Identifiant à insérer`
+MONGODB_USERNAME=`Identifiant à insérer`</br>
+MONGODB_PASSWORD=`Identifiant à insérer`</br>
 JWT_SECRET_KEY=`Clé à insérer`
 </blockquote>
 
