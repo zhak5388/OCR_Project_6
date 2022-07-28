@@ -1,5 +1,5 @@
 const multer = require("multer");
-const formDataKeyValue = "image"; //La clé telle que définie au frontend est image
+const formDataKeyValue = "image"; //La clé telle qu'elle est définie dans le frontend est image
 const uploadingDirectory = `${process.env.IMAGE_DIRECTORY}`;
 
 const MIME_TYPES = 
