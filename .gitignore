@@ -1,4 +1,5 @@
 node_modules
 .env
 testing_directory
-4_Uploads_Images
+uploadDirectory
+Others

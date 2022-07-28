@@ -1,13 +1,11 @@
-/*
+/* || Explication du require
 const test_require = require("./testing_directory/test_require");
 test_require();
-//The require functioon is a way to include modules that exists in a separated file
-// 1) It reads the js file
-// 2) It executes the file
-// 3) And proceedm then return (?) the exports objects
+The require function is a way to include modules that exists in a separated file
+1) It reads the js file
+2) It executes the file
+3) And proceedm then return (?) the exports objects
 */
-//test
-//const findOne = require("./2_controllers/userControllers");
 
 
 //Importation des modules généraux
@@ -21,8 +19,8 @@ const mongoDdPassword = process.env.MONGODB_PASSWORD;
 const imageDirectory = process.env.IMAGE_DIRECTORY;
 
 //Importation des modules "routes"
-const userRoutes = require("./1_routes/userRoutes");
-const sauceRoutes = require("./1_routes/sauceRoutes");
+const userRoutes = require("./routes/userRoutes");
+const sauceRoutes = require("./routes/sauceRoutes");
 
 //Importation du module express
 const app = express();
@@ -43,7 +41,8 @@ mongoose.connect(`mongodb+srv://${mongoDbUsername}:${mongoDdPassword}@ocrproject
 
 app.use(express.json());
 
-app.use((req, res, next) => //Nom des parametres non pertinent, Ordre important
+//Définition des headers
+app.use((req, res, next) => //|| Nom des parametres non pertinent, Ordre important
 {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization");
@@ -51,12 +50,12 @@ app.use((req, res, next) => //Nom des parametres non pertinent, Ordre important
     next();
 });
 
+//Appel des routes
 app.use("/api/auth", userRoutes);
 app.use("/api/sauces", sauceRoutes);
 
-//console.log("***APP.JS***");
-//console.log(__dirname);
-//console.log(path.join(__dirname, imageDirectory));
+//Permet la consultation des images stockées
 app.use("/" + imageDirectory, express.static(path.join(__dirname, imageDirectory)));
+
 //Exportation de la fonction app
 module.exports = app;

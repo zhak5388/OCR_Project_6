@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-const userControllers = require("../2_controllers/userControllers");
+//Importation des controlleurs utilisés pour la route "utilisateurs"
+const userControllers = require("../controllers/userControllers");
 
+//Configuration de la route "utilisateurs"
 router.post("/signup", userControllers.signUp);
 router.post("/login", userControllers.login);
 

@@ -1,11 +1,14 @@
 const express = require("express");
 const router = express.Router();
 
-const sauceControllers = require("../2_controllers/sauceControllers");
+//Importation des controlleurs utilisés pour la route "sauces"
+const sauceControllers = require("../controllers/sauceControllers");
 
-const authorization = require("../2_middlewares/authorize")
-const multer = require("../2_middlewares/multer_config")
+//Importation des middlewares utilisés
+const authorization = require("../middlewares/authorize")
+const multer = require("../middlewares/multer_config")
 
+//Configuration de la route "sauces"
 router.get("/", authorization.authorize, sauceControllers.getAllSauces);
 router.get("/:id", authorization.authorize, sauceControllers.getSauce);
 router.post("/", authorization.authorize, multer.uploadImage, sauceControllers.addSauce);
