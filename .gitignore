@@ -1,5 +1,6 @@
 node_modules
 .env
+.env_backup
 testing_directory
 uploadDirectory
 Others
